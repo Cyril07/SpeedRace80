@@ -1,4 +1,4 @@
-name: Fetch and Update JSON
+name: Update SpeedRace80 JSON File
 
 on:
   schedule:
