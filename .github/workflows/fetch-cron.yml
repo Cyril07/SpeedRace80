@@ -2,9 +2,9 @@ name: Fetch and Update JSON
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-    - cron: "0 12 * * *"
-  workflow_dispatch:
+    - cron: "0 0 * * *" # tous les jours à 00:00 UTC
+    - cron: "0 12 * * *" # tous les jours à 12:00 UTC
+  workflow_dispatch: # permet de lancer manuellement
 
 jobs:
   fetch-data:
@@ -25,14 +25,16 @@ jobs:
       - name: Run fetch script
         run: node fetch.js
 
-      - name: Commit and push if data changed
+      - name: Configure Git user
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
+
+      - name: Commit and push if data changed
+        run: |
           git add dataSpeed.json
           if ! git diff --cached --quiet; then
             git commit -m "Update dataSpeed.json"
-            git push
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
           else
             echo "No changes to commit"
-          fi
