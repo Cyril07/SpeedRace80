@@ -1,0 +1,38 @@
+name: Fetch and Update JSON
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run fetch script
+        run: node fetch.js
+
+      - name: Commit and push if data changed
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add dataSpeed.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update dataSpeed.json"
+            git push
+          else
+            echo "No changes to commit"
+          fi

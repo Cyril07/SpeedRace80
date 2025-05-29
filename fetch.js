@@ -1,0 +1,210 @@
+// fetch.js
+import fs from "fs";
+import fetch from "node-fetch";
+import path from "path";
+import { fileURLToPath } from "url";
+// URL de l'API pour récupérer les activités du club
+const urlRace80 =
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=10"; // ✅ Modifier si une autre API est utilisée
+
+// En-têtes nécessaires pour l'appel à l'API
+const headers = {
+  Origin: "https://speedhive.mylaps.com",
+};
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+function timeStringToSeconds(str) {
+  // Vérifie si le format contient un ":"
+  if (str.includes(":")) {
+    // Si oui, c'est une durée avec minutes et secondes
+    const [minutes, seconds] = str.split(":").map(Number);
+    return minutes * 60 + seconds;
+  } else {
+    // Sinon, on suppose que c'est déjà en secondes
+    return parseFloat(str);
+  }
+}
+
+async function main() {
+  let bestLap = null, // Meilleur temps au tour
+    bestConsecutiveLapTime = null, // Meilleur temps consécutif sur 3 tours
+    timeInFiveMinutes = 0,
+    bestTimeFiveMinutes = null, // Meilleur temps sur une fenêtre de 5 minutes
+    nbLapsFiveMinutes = null,
+    bestLapsFiveMinutes = null,
+    startIndexFiveMinutes = 0;
+
+  // Lecture des données éxistantes
+  let jsonPath = path.join(__dirname, "dataSpeed.json");
+  let jsonDataSpeed = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+
+  // Appel à l'API pour récupérer les activités
+  const res = await fetch(urlRace80, {
+    method: "GET",
+    headers: headers,
+  });
+
+  if (!res.ok) {
+    throw new Error(`Erreur lors de l'appel à l'API : ${res.statusText}`);
+  }
+
+  const oCallActivitiesRace80 = await res.json();
+  const aRunsRace80 = oCallActivitiesRace80.activities;
+
+  // Parcourir chaque activité
+  for (const element of aRunsRace80) {
+    const urlSession = `https://practice-api.speedhive.com/api/v1/training/activities/${element.id}/sessions`;
+
+    // Appel à l'API pour récupérer les sessions d'une activité
+    const oSession = await fetch(urlSession, {
+      method: "GET",
+      headers: headers,
+    });
+
+    const sessionData = await oSession.json();
+    const aSessions = sessionData.sessions;
+
+    // Parcourir chaque session
+    for (const session of aSessions) {
+      const iMinBestLap = session.medianLapDuration > 15 ? 16 : 7; // Temps minimum pour ignorer les tours "triche"
+      const sCategory = session.medianLapDuration > 15 ? "TT" : "Touring"; // Catégorie basée sur la durée médiane du tour
+      const aLaps = session.laps; // Liste des tours dans la session
+
+      // Calcul du meilleur temps au tour et des meilleurs temps consécutifs
+      for (let i = 0; i < aLaps.length; i++) {
+        const fLapTime = timeStringToSeconds(aLaps[i].duration); // Temps du tour
+
+        if (fLapTime <= iMinBestLap) {
+          continue; // Ignorer les tours "triche"
+        }
+
+        // Mettre à jour le meilleur temps au tour
+        if (bestLap === null || fLapTime < bestLap) {
+          bestLap = fLapTime;
+        }
+
+        // Meilleur temps / tour en 5 mins
+        timeInFiveMinutes = fLapTime;
+        nbLapsFiveMinutes = 1;
+        startIndexFiveMinutes = i;
+        while (timeInFiveMinutes < 300) {
+          if (
+            aLaps[startIndexFiveMinutes] === undefined ||
+            timeStringToSeconds(aLaps[startIndexFiveMinutes].duration) <=
+              iMinBestLap
+          ) {
+            break; // Ignorer les tours "triche"
+          }
+          timeInFiveMinutes += timeStringToSeconds(
+            aLaps[startIndexFiveMinutes].duration
+          );
+          nbLapsFiveMinutes++;
+          startIndexFiveMinutes++;
+        }
+
+        // Mettre à jour le meilleur temps au tour en 5 minutes
+        if (
+          timeInFiveMinutes > 300 &&
+          (bestTimeFiveMinutes === null ||
+            nbLapsFiveMinutes > bestLapsFiveMinutes ||
+            (nbLapsFiveMinutes === bestLapsFiveMinutes &&
+              timeInFiveMinutes < bestTimeFiveMinutes))
+        ) {
+          bestTimeFiveMinutes = timeInFiveMinutes;
+          bestLapsFiveMinutes = nbLapsFiveMinutes; // Mettre à jour le nombre de tours
+        }
+
+        // Pas de calcul  pour les 3 meilleurs tours si on arrive à la fin de la boucle
+        if (aLaps[i + 1] === undefined || aLaps[i + 2] === undefined) {
+          continue;
+        }
+
+        // Calculer le temps total pour 3 tours consécutifs
+        const lap1 = fLapTime;
+        const lap2 = timeStringToSeconds(aLaps[i + 1].duration);
+        const lap3 = timeStringToSeconds(aLaps[i + 2].duration);
+
+        const totalLapTime = lap1 + lap2 + lap3;
+        if (
+          bestConsecutiveLapTime === null ||
+          (totalLapTime < bestConsecutiveLapTime &&
+            totalLapTime > iMinBestLap * 3)
+        ) {
+          bestConsecutiveLapTime = totalLapTime;
+        }
+      }
+
+      // Rechercher l'objet correspondant au pilote dans jsonDataSpeed
+      const piloteData = jsonDataSpeed[sCategory].find(
+        (data) => data.Pilote === element.chipLabel
+      );
+
+      // Mis à jour des données avec arrondi
+      bestLap = bestLap !== null ? parseFloat(bestLap.toFixed(3)) : null;
+      bestConsecutiveLapTime =
+        bestConsecutiveLapTime !== null
+          ? parseFloat(bestConsecutiveLapTime.toFixed(3))
+          : null;
+      bestTimeFiveMinutes =
+        bestTimeFiveMinutes !== null
+          ? parseFloat(bestTimeFiveMinutes.toFixed(3))
+          : null;
+
+      // Si le pilote n'existe pas encore dans le fichier, initialisez un nouvel objet
+      if (!piloteData) {
+        jsonDataSpeed[sCategory].push({
+          Pilote: element.chipLabel,
+          BestLap: bestLap,
+          Best3Lap: bestConsecutiveLapTime,
+          BestFiveMinutes: {
+            Laps: bestLapsFiveMinutes,
+            Time: bestTimeFiveMinutes,
+          },
+        });
+      } else {
+        // Mettre à jour les données du pilote
+        if (bestLap !== null && piloteData.BestLap > bestLap) {
+          piloteData.BestLap = bestLap;
+        }
+        if (
+          bestConsecutiveLapTime !== null &&
+          piloteData.Best3Lap > bestConsecutiveLapTime
+        ) {
+          piloteData.Best3Lap = bestConsecutiveLapTime;
+        }
+        if (
+          (bestLapsFiveMinutes !== null &&
+            bestTimeFiveMinutes !== null &&
+            bestLapsFiveMinutes > piloteData.BestFiveMinutes.Laps) ||
+          (bestLapsFiveMinutes !== null &&
+            bestTimeFiveMinutes !== null &&
+            bestLapsFiveMinutes >= piloteData.BestFiveMinutes.Laps &&
+            bestTimeFiveMinutes < piloteData.BestFiveMinutes.Time)
+        ) {
+          piloteData.BestFiveMinutes.Laps = bestLapsFiveMinutes;
+          piloteData.BestFiveMinutes.Time = bestTimeFiveMinutes;
+        }
+      }
+
+      // Réinitialiser les variables pour la prochaine activité
+      bestLap = null;
+      bestConsecutiveLapTime = null;
+      timeInFiveMinutes = 0;
+      bestTimeFiveMinutes = null;
+      nbLapsFiveMinutes = null;
+      bestLapsFiveMinutes = null;
+      startIndexFiveMinutes = 0;
+    }
+  }
+
+  // Réécriture complète du fichier
+  fs.writeFileSync(jsonPath, JSON.stringify(jsonDataSpeed, null, 2), "utf8");
+  console.log("Fichier mis à jour");
+}
+
+// Gestion des erreurs
+main().catch((error) => {
+  console.error("Erreur dans le script :", error);
+});

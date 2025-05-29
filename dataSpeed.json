@@ -1,0 +1,78 @@
+{
+  "TT": [
+    {
+      "Pilote": "Apex xb2",
+      "BestLap": 19.772,
+      "Best3Lap": 61.633,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "PR Truck AL 😃",
+      "BestLap": 18.677,
+      "Best3Lap": 59.067,
+      "BestFiveMinutes": {
+        "Laps": 11,
+        "Time": 317.281
+      }
+    },
+    {
+      "Pilote": "Christophe Robic",
+      "BestLap": 16.108,
+      "Best3Lap": 62.704,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 317.527
+      }
+    },
+    {
+      "Pilote": "L. Drouillard - 4x2-13,5",
+      "BestLap": 19.703,
+      "Best3Lap": 61.109,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 321.534
+      }
+    },
+    {
+      "Pilote": "Guillaume W. TT",
+      "BestLap": 17.961,
+      "Best3Lap": 54.979,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 314.678
+      }
+    },
+    {
+      "Pilote": "Antoine XB2",
+      "BestLap": 17.4,
+      "Best3Lap": 53.221,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 319.331
+      }
+    }
+  ],
+  "Touring": [
+    {
+      "Pilote": "Guillaume W. Touring",
+      "BestLap": 8.597,
+      "Best3Lap": 26.112,
+      "BestFiveMinutes": {
+        "Laps": 33,
+        "Time": 301.31
+      }
+    },
+    {
+      "Pilote": "Kawika TT",
+      "BestLap": 7.944,
+      "Best3Lap": 24.704,
+      "BestFiveMinutes": {
+        "Laps": 36,
+        "Time": 304.709
+      }
+    }
+  ]
+}
