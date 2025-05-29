@@ -2,11 +2,11 @@
   "TT": [
     {
       "Pilote": "Apex xb2",
-      "BestLap": 19.772,
-      "Best3Lap": 61.633,
+      "BestLap": 19.292,
+      "Best3Lap": 59.866,
       "BestFiveMinutes": {
-        "Laps": null,
-        "Time": null
+        "Laps": 15,
+        "Time": 315.864
       }
     },
     {
@@ -14,8 +14,8 @@
       "BestLap": 18.677,
       "Best3Lap": 59.067,
       "BestFiveMinutes": {
-        "Laps": 11,
-        "Time": 317.281
+        "Laps": 13,
+        "Time": 304.421
       }
     },
     {
@@ -24,13 +24,13 @@
       "Best3Lap": 62.704,
       "BestFiveMinutes": {
         "Laps": 14,
-        "Time": 317.527
+        "Time": 313.527
       }
     },
     {
       "Pilote": "L. Drouillard - 4x2-13,5",
-      "BestLap": 19.703,
-      "Best3Lap": 61.109,
+      "BestLap": 19.675,
+      "Best3Lap": 59.91,
       "BestFiveMinutes": {
         "Laps": 15,
         "Time": 321.534
@@ -52,6 +52,24 @@
       "BestFiveMinutes": {
         "Laps": 17,
         "Time": 319.331
+      }
+    },
+    {
+      "Pilote": "Mugen LR",
+      "BestLap": 18.287,
+      "Best3Lap": 57.069,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 300.818
+      }
+    },
+    {
+      "Pilote": "Mugen AL 😃",
+      "BestLap": 17.709,
+      "Best3Lap": 54.225,
+      "BestFiveMinutes": {
+        "Laps": 12,
+        "Time": 300.481
       }
     }
   ],
