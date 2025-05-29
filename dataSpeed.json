@@ -1,8 +1,78 @@
 {
   "TT": [
-    
+    {
+      "Pilote": "L. Drouillard - 4x2-13,5",
+      "BestLap": 19.675,
+      "Best3Lap": 59.91,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 321.534
+      }
+    },
+    {
+      "Pilote": "Christophe Robic",
+      "BestLap": 16.108,
+      "Best3Lap": 62.704,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 313.527
+      }
+    },
+    {
+      "Pilote": "PR Truck AL 😃",
+      "BestLap": 18.677,
+      "Best3Lap": 59.067,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 304.421
+      }
+    },
+    {
+      "Pilote": "Apex xb2",
+      "BestLap": 19.292,
+      "Best3Lap": 59.866,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 315.864
+      }
+    },
+    {
+      "Pilote": "Mugen LR",
+      "BestLap": 18.287,
+      "Best3Lap": 57.069,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 300.818
+      }
+    },
+    {
+      "Pilote": "Mugen AL 😃",
+      "BestLap": 17.709,
+      "Best3Lap": 54.225,
+      "BestFiveMinutes": {
+        "Laps": 12,
+        "Time": 300.481
+      }
+    },
+    {
+      "Pilote": "Guillaume W. TT",
+      "BestLap": 17.961,
+      "Best3Lap": 54.979,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 314.678
+      }
+    }
   ],
   "Touring": [
-   
+    {
+      "Pilote": "Guillaume W. Touring",
+      "BestLap": 8.597,
+      "Best3Lap": 26.112,
+      "BestFiveMinutes": {
+        "Laps": 33,
+        "Time": 301.31
+      }
+    }
   ]
 }
