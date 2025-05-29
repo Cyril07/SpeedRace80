@@ -2,9 +2,9 @@ name: Fetch and Update JSON
 
 on:
   schedule:
-    - cron: "0 0 * * *" # tous les jours à 00:00 UTC
-    - cron: "0 12 * * *" # tous les jours à 12:00 UTC
-  workflow_dispatch: # permet de lancer manuellement
+    - cron: "0 0 * * *"
+    - cron: "0 12 * * *"
+  workflow_dispatch:
 
 jobs:
   fetch-data:
