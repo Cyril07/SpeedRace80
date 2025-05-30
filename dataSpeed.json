@@ -1,6 +1,483 @@
 {
-  "TT": [   
+  "TT": [
+    {
+      "Pilote": "Xb2",
+      "BestLap": 17.022,
+      "Best3Lap": 52.456,
+      "BestFiveMinutes": {
+        "Laps": 16,
+        "Time": 307.423
+      }
+    },
+    {
+      "Pilote": "Xray XB4",
+      "BestLap": 16.817,
+      "Best3Lap": 51.049,
+      "BestFiveMinutes": {
+        "Laps": 18,
+        "Time": 312.719
+      }
+    },
+    {
+      "Pilote": "PR Truck AL 😃",
+      "BestLap": 18.139,
+      "Best3Lap": 56.079,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 313.519
+      }
+    },
+    {
+      "Pilote": "Mugen AL 😃",
+      "BestLap": 17.594,
+      "Best3Lap": 53.852,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 316.437
+      }
+    },
+    {
+      "Pilote": "Mugen LR",
+      "BestLap": 18.287,
+      "Best3Lap": 57.009,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 319.709
+      }
+    },
+    {
+      "Pilote": "Christophe Robic",
+      "BestLap": 19.82,
+      "Best3Lap": 62.704,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 313.527
+      }
+    },
+    {
+      "Pilote": "L. Drouillard - 4x2-13,5",
+      "BestLap": 19.675,
+      "Best3Lap": 59.91,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 321.534
+      }
+    },
+    {
+      "Pilote": "Apex xb2",
+      "BestLap": 19.292,
+      "Best3Lap": 59.222,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 307.204
+      }
+    },
+    {
+      "Pilote": "Guillaume W. TT",
+      "BestLap": 17.961,
+      "Best3Lap": 54.626,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 314.678
+      }
+    },
+    {
+      "Pilote": "Antoine XB2",
+      "BestLap": 17.06,
+      "Best3Lap": 53.221,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 318.392
+      }
+    },
+    {
+      "Pilote": "XB2C 24' Julien T",
+      "BestLap": 17.688,
+      "Best3Lap": 57.615,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 310.94
+      }
+    },
+    {
+      "Pilote": "Nico mugen ",
+      "BestLap": 20.889,
+      "Best3Lap": 66.868,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "3126922",
+      "BestLap": 21.788,
+      "Best3Lap": 67.828,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 313.574
+      }
+    },
+    {
+      "Pilote": "xray xb2 2025 kossovar",
+      "BestLap": 16.391,
+      "Best3Lap": 50.545,
+      "BestFiveMinutes": {
+        "Laps": 18,
+        "Time": 314.524
+      }
+    },
+    {
+      "Pilote": "mrte",
+      "BestLap": 17.551,
+      "Best3Lap": 53.679,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 308.519
+      }
+    },
+    {
+      "Pilote": "dtm",
+      "BestLap": 17.736,
+      "Best3Lap": 54.191,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 317.794
+      }
+    },
+    {
+      "Pilote": "Y Rc4 H",
+      "BestLap": 19.596,
+      "Best3Lap": 60.401,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 312.592
+      }
+    },
+    {
+      "Pilote": "B10R LL",
+      "BestLap": 17.08,
+      "Best3Lap": 54.553,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 309.528
+      }
+    },
+    {
+      "Pilote": "B10TR LL",
+      "BestLap": 18.903,
+      "Best3Lap": 58.843,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 304.956
+      }
+    },
+    {
+      "Pilote": "7543866 [0]",
+      "BestLap": 23.691,
+      "Best3Lap": 74.125,
+      "BestFiveMinutes": {
+        "Laps": 12,
+        "Time": 317.713
+      }
+    },
+    {
+      "Pilote": "Romain #tki4",
+      "BestLap": 20.72,
+      "Best3Lap": 64.765,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 313.492
+      }
+    },
+    {
+      "Pilote": "Saintyves Sekou ",
+      "BestLap": 24.261,
+      "Best3Lap": 76.737,
+      "BestFiveMinutes": {
+        "Laps": 11,
+        "Time": 320.864
+      }
+    },
+    {
+      "Pilote": "Saintyves Souleymane ",
+      "BestLap": 18.094,
+      "Best3Lap": 55.718,
+      "BestFiveMinutes": {
+        "Laps": 16,
+        "Time": 309.839
+      }
+    },
+    {
+      "Pilote": "Greg XB2 ",
+      "BestLap": 16.939,
+      "Best3Lap": 51.438,
+      "BestFiveMinutes": {
+        "Laps": 18,
+        "Time": 316.063
+      }
+    },
+    {
+      "Pilote": "7795711 [0]",
+      "BestLap": 20.539,
+      "Best3Lap": 62.697,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 301.361
+      }
+    },
+    {
+      "Pilote": "B7",
+      "BestLap": 20.742,
+      "Best3Lap": 63.339,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 301.046
+      }
+    },
+    {
+      "Pilote": "Clément Porée",
+      "BestLap": 16.302,
+      "Best3Lap": 51.542,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 319.608
+      }
+    },
+    {
+      "Pilote": "Fabien VINCENT 4x2",
+      "BestLap": 18.806,
+      "Best3Lap": 56.827,
+      "BestFiveMinutes": {
+        "Laps": 16,
+        "Time": 312.566
+      }
+    },
+    {
+      "Pilote": "4960589",
+      "BestLap": 20.483,
+      "Best3Lap": null,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 319.802
+      }
+    },
+    {
+      "Pilote": "Greg secours",
+      "BestLap": 20.797,
+      "Best3Lap": 63.626,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 300.678
+      }
+    },
+    {
+      "Pilote": "Vintage Greg",
+      "BestLap": 19.343,
+      "Best3Lap": 58.691,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 305.508
+      }
+    },
+    {
+      "Pilote": "Cyril Lenglet",
+      "BestLap": 18.892,
+      "Best3Lap": 56.834,
+      "BestFiveMinutes": {
+        "Laps": 16,
+        "Time": 313.736
+      }
+    },
+    {
+      "Pilote": "Antoine - Small black",
+      "BestLap": 21.014,
+      "Best3Lap": null,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "Fabien VINCENT Truck",
+      "BestLap": 21.275,
+      "Best3Lap": 64.796,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 314.271
+      }
+    },
+    {
+      "Pilote": "2123267 [0]",
+      "BestLap": 21.206,
+      "Best3Lap": 64.854,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 312.26
+      }
+    },
+    {
+      "Pilote": "David Danneaux",
+      "BestLap": 20.408,
+      "Best3Lap": 62.81,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 316.205
+      }
+    },
+    {
+      "Pilote": "Antoine - Big red",
+      "BestLap": 18.456,
+      "Best3Lap": 59.043,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 304.255
+      }
+    },
+    {
+      "Pilote": "Nico Dly",
+      "BestLap": 19.643,
+      "Best3Lap": 59.623,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 307.258
+      }
+    },
+    {
+      "Pilote": "Kawika TC",
+      "BestLap": 19.449,
+      "Best3Lap": 60.03,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 315.36
+      }
+    },
+    {
+      "Pilote": "Daviaud Laurent",
+      "BestLap": 21.759,
+      "Best3Lap": 66.904,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 305.62
+      }
+    },
+    {
+      "Pilote": "RC8B3 e",
+      "BestLap": 21.066,
+      "Best3Lap": 65.116,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 315.416
+      }
+    },
+    {
+      "Pilote": "4533629 [0]",
+      "BestLap": 23.28,
+      "Best3Lap": 72.198,
+      "BestFiveMinutes": {
+        "Laps": 12,
+        "Time": 312.615
+      }
+    },
+    {
+      "Pilote": "TIBO 1",
+      "BestLap": 20.294,
+      "Best3Lap": 62.832,
+      "BestFiveMinutes": {
+        "Laps": 12,
+        "Time": 311.629
+      }
+    },
+    {
+      "Pilote": "Cougar Classic FD ",
+      "BestLap": 19.237,
+      "Best3Lap": null,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 323.468
+      }
+    }
   ],
-  "Touring": [    
+  "Touring": [
+    {
+      "Pilote": "Guillaume W. Touring",
+      "BestLap": 8.597,
+      "Best3Lap": 26.112,
+      "BestFiveMinutes": {
+        "Laps": 33,
+        "Time": 300.895
+      }
+    },
+    {
+      "Pilote": "Kawika TT",
+      "BestLap": 7.944,
+      "Best3Lap": 24.704,
+      "BestFiveMinutes": {
+        "Laps": 36,
+        "Time": 304.709
+      }
+    },
+    {
+      "Pilote": "Y Rc4 H",
+      "BestLap": 9.491,
+      "Best3Lap": 48.139,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "Romain #tki4",
+      "BestLap": 7.807,
+      "Best3Lap": 83.804,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "FT1s",
+      "BestLap": 9.689,
+      "Best3Lap": 29.769,
+      "BestFiveMinutes": {
+        "Laps": 28,
+        "Time": 302.349
+      }
+    },
+    {
+      "Pilote": "Clément Porée",
+      "BestLap": 9.844,
+      "Best3Lap": 30.326,
+      "BestFiveMinutes": {
+        "Laps": 28,
+        "Time": 305.921
+      }
+    },
+    {
+      "Pilote": "Fabien VINCENT Truck",
+      "BestLap": 7.056,
+      "Best3Lap": 32.613,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "7543866 [0]",
+      "BestLap": 36.912,
+      "Best3Lap": null,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "2851984 [0]",
+      "BestLap": 8.574,
+      "Best3Lap": 26.234,
+      "BestFiveMinutes": {
+        "Laps": 34,
+        "Time": 305.892
+      }
+    }
   ]
 }
