@@ -32,7 +32,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
   const bValidTourAverage =
     averageTimeLapSession - fLapTime < 0 ||
     (averageTimeLapSession - fLapTime > 0 &&
-      averageTimeLapSession - fLapTime < 4);
+      averageTimeLapSession - fLapTime < 2);
 
   if (fLapTime <= iMinBestLap || !bValidTourAverage) {
     return false;
@@ -113,11 +113,6 @@ async function main() {
       for (let i = 0; i < aLaps.length; i++) {
         const fLapTime = timeStringToSeconds(aLaps[i].duration); // Temps du tour
 
-        // Vérification de la validité du tour
-        const bValidTourAverage =
-          averageTimeLapSession - fLapTime < 0 ||
-          (averageTimeLapSession - fLapTime > 0 &&
-            averageTimeLapSession - fLapTime < 4);
         if (
           lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) ===
           false
@@ -219,6 +214,10 @@ async function main() {
       if (!bestLap) {
         continue;
       }
+
+      // if (bestLap < 16.2 && sCategory === "TT") {
+      //   console.log("trichhhheeee");
+      // }
 
       // Rechercher l'objet correspondant au pilote dans jsonDataSpeed
       const piloteData = jsonDataSpeed[sCategory].find(
