@@ -1,21 +1,21 @@
 {
   "TT": [
     {
-      "Pilote": "Xb2",
-      "BestLap": 17.022,
-      "Best3Lap": 52.456,
-      "BestFiveMinutes": {
-        "Laps": 16,
-        "Time": 307.423
-      }
-    },
-    {
       "Pilote": "Xray XB4",
       "BestLap": 16.817,
       "Best3Lap": 51.049,
       "BestFiveMinutes": {
         "Laps": 18,
         "Time": 312.719
+      }
+    },
+    {
+      "Pilote": "Xb2",
+      "BestLap": 17.022,
+      "Best3Lap": 52.456,
+      "BestFiveMinutes": {
+        "Laps": 16,
+        "Time": 307.423
       }
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "Pilote": "Christophe Robic",
-      "BestLap": 19.82,
+      "BestLap": 18.392,
       "Best3Lap": 62.704,
       "BestFiveMinutes": {
         "Laps": 14,
@@ -83,7 +83,7 @@
     },
     {
       "Pilote": "Antoine XB2",
-      "BestLap": 17.06,
+      "BestLap": 16.136,
       "Best3Lap": 53.221,
       "BestFiveMinutes": {
         "Laps": 17,
@@ -146,7 +146,7 @@
     },
     {
       "Pilote": "Y Rc4 H",
-      "BestLap": 19.596,
+      "BestLap": 16.648,
       "Best3Lap": 60.401,
       "BestFiveMinutes": {
         "Laps": 14,
@@ -182,7 +182,7 @@
     },
     {
       "Pilote": "Romain #tki4",
-      "BestLap": 20.72,
+      "BestLap": 19.494,
       "Best3Lap": 64.765,
       "BestFiveMinutes": {
         "Laps": 13,
@@ -191,8 +191,8 @@
     },
     {
       "Pilote": "Saintyves Sekou ",
-      "BestLap": 24.261,
-      "Best3Lap": 76.737,
+      "BestLap": 24.732,
+      "Best3Lap": 80.928,
       "BestFiveMinutes": {
         "Laps": 11,
         "Time": 320.864
@@ -236,8 +236,8 @@
     },
     {
       "Pilote": "Clément Porée",
-      "BestLap": 16.302,
-      "Best3Lap": 51.542,
+      "BestLap": 21.335,
+      "Best3Lap": 65.748,
       "BestFiveMinutes": {
         "Laps": 14,
         "Time": 319.608
@@ -254,7 +254,7 @@
     },
     {
       "Pilote": "4960589",
-      "BestLap": 20.483,
+      "BestLap": 18.706,
       "Best3Lap": null,
       "BestFiveMinutes": {
         "Laps": 14,
@@ -308,8 +308,8 @@
     },
     {
       "Pilote": "2123267 [0]",
-      "BestLap": 21.206,
-      "Best3Lap": 64.854,
+      "BestLap": 16.197,
+      "Best3Lap": 61.378,
       "BestFiveMinutes": {
         "Laps": 14,
         "Time": 312.26
@@ -390,7 +390,7 @@
     {
       "Pilote": "Cougar Classic FD ",
       "BestLap": 19.237,
-      "Best3Lap": null,
+      "Best3Lap": 64.73,
       "BestFiveMinutes": {
         "Laps": 14,
         "Time": 323.468
@@ -418,8 +418,8 @@
     },
     {
       "Pilote": "Y Rc4 H",
-      "BestLap": 9.491,
-      "Best3Lap": 48.139,
+      "BestLap": 7.824,
+      "Best3Lap": 25.276,
       "BestFiveMinutes": {
         "Laps": null,
         "Time": null
@@ -462,8 +462,26 @@
       }
     },
     {
-      "Pilote": "7543866 [0]",
-      "BestLap": 36.912,
+      "Pilote": "David Danneaux",
+      "BestLap": 12.15,
+      "Best3Lap": null,
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null
+      }
+    },
+    {
+      "Pilote": "4533629 [0]",
+      "BestLap": 25.277,
+      "Best3Lap": 77.592,
+      "BestFiveMinutes": {
+        "Laps": 11,
+        "Time": 310.611
+      }
+    },
+    {
+      "Pilote": "Cougar Classic FD ",
+      "BestLap": 22.923,
       "Best3Lap": null,
       "BestFiveMinutes": {
         "Laps": null,

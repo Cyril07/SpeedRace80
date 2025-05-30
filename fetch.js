@@ -82,22 +82,32 @@ async function main() {
 
     // Parcourir chaque session
     for (const session of aSessions) {
-      const iMinBestLap = session.medianLapDuration > 15 ? 16 : 7; // Temps minimum pour ignorer les tours "triche"
-      const sCategory = session.medianLapDuration > 15 ? "TT" : "Touring"; // Catégorie basée sur la durée médiane du tour
-      const aLaps = session.laps; // Liste des tours dans la session
+      // Liste des tours dans la session
+      const aLaps = session.laps;
 
       // Moyenne du temps au tour sans truc bizarre
       let iLapAverage = 0,
         timeAverageSession = 0;
+
       for (const lap of aLaps) {
         const fLapTime = timeStringToSeconds(lap.duration); // Temps du tour
         // Vérification de la validité du tour
-        if (fLapTime >= iMinBestLap && fLapTime < 30) {
+        if (fLapTime < 25) {
+          //fLapTime >= iMinBestLap &&
           timeAverageSession += fLapTime; // Ajouter le temps du tour à la moyenne
           iLapAverage++;
         }
       }
       averageTimeLapSession = timeAverageSession / iLapAverage;
+
+      // Debug
+      // if (element.chipLabel === "Clément Porée") {
+      //   console.log("Debuggage");
+      // }
+
+      // const iMinBestLap = session.medianLapDuration < 12 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
+      const iMinBestLap = averageTimeLapSession < 16.5 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
+      const sCategory = averageTimeLapSession < 16.5 ? "Touring" : "TT"; // Catégorie basée sur la durée médiane du tour
 
       // Calcul du meilleur temps au tour et des meilleurs temps consécutifs
       for (let i = 0; i < aLaps.length; i++) {
@@ -194,11 +204,6 @@ async function main() {
       if (aLaps.length === 0) {
         continue;
       }
-
-      // Debug
-      // if (element.chipLabel === "David Danneaux") {
-      //   console.log("Cyril L");
-      // }
 
       // Mis à jour des données avec arrondi
       bestLap = bestLap !== null ? parseFloat(bestLap.toFixed(3)) : null;
