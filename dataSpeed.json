@@ -62,6 +62,24 @@
         "Laps": 17,
         "Time": 314.678
       }
+    },
+    {
+      "Pilote": "Xray XB4",
+      "BestLap": 16.875,
+      "Best3Lap": 51.064,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 303.351
+      }
+    },
+    {
+      "Pilote": "Xb2",
+      "BestLap": 17.022,
+      "Best3Lap": 52.456,
+      "BestFiveMinutes": {
+        "Laps": 16,
+        "Time": 307.423
+      }
     }
   ],
   "Touring": [
