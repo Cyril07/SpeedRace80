@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 // URL de l'API pour récupérer les activités du club
 const urlRace80 =
-  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=10"; // ✅ Modifier si une autre API est utilisée
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=80"; // ✅ Modifier si une autre API est utilisée
 
 // En-têtes nécessaires pour l'appel à l'API
 const headers = {
@@ -27,6 +27,19 @@ function timeStringToSeconds(str) {
   }
 }
 
+function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
+  // Vérification de la validité du tour
+  const bValidTourAverage =
+    averageTimeLapSession - fLapTime < 0 ||
+    (averageTimeLapSession - fLapTime > 0 &&
+      averageTimeLapSession - fLapTime < 4);
+
+  if (fLapTime <= iMinBestLap || !bValidTourAverage) {
+    return false;
+  }
+  return true;
+}
+
 async function main() {
   let bestLap = null, // Meilleur temps au tour
     bestConsecutiveLapTime = null, // Meilleur temps consécutif sur 3 tours
@@ -34,7 +47,8 @@ async function main() {
     bestTimeFiveMinutes = null, // Meilleur temps sur une fenêtre de 5 minutes
     nbLapsFiveMinutes = null,
     bestLapsFiveMinutes = null,
-    startIndexFiveMinutes = 0;
+    startIndexFiveMinutes = 0,
+    averageTimeLapSession = null;
 
   // Lecture des données éxistantes
   let jsonPath = path.join(__dirname, "dataSpeed.json");
@@ -72,11 +86,32 @@ async function main() {
       const sCategory = session.medianLapDuration > 15 ? "TT" : "Touring"; // Catégorie basée sur la durée médiane du tour
       const aLaps = session.laps; // Liste des tours dans la session
 
+      // Moyenne du temps au tour sans truc bizarre
+      let iLapAverage = 0,
+        timeAverageSession = 0;
+      for (const lap of aLaps) {
+        const fLapTime = timeStringToSeconds(lap.duration); // Temps du tour
+        // Vérification de la validité du tour
+        if (fLapTime >= iMinBestLap && fLapTime < 30) {
+          timeAverageSession += fLapTime; // Ajouter le temps du tour à la moyenne
+          iLapAverage++;
+        }
+      }
+      averageTimeLapSession = timeAverageSession / iLapAverage;
+
       // Calcul du meilleur temps au tour et des meilleurs temps consécutifs
       for (let i = 0; i < aLaps.length; i++) {
         const fLapTime = timeStringToSeconds(aLaps[i].duration); // Temps du tour
 
-        if (fLapTime <= iMinBestLap) {
+        // Vérification de la validité du tour
+        const bValidTourAverage =
+          averageTimeLapSession - fLapTime < 0 ||
+          (averageTimeLapSession - fLapTime > 0 &&
+            averageTimeLapSession - fLapTime < 4);
+        if (
+          lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) ===
+          false
+        ) {
           continue; // Ignorer les tours "triche"
         }
 
@@ -89,17 +124,20 @@ async function main() {
         timeInFiveMinutes = fLapTime;
         nbLapsFiveMinutes = 1;
         startIndexFiveMinutes = i;
+
         while (timeInFiveMinutes < 300) {
+          if (aLaps[startIndexFiveMinutes] === undefined) break;
+          let fLapTime = timeStringToSeconds(
+            aLaps[startIndexFiveMinutes].duration
+          );
           if (
-            aLaps[startIndexFiveMinutes] === undefined ||
-            timeStringToSeconds(aLaps[startIndexFiveMinutes].duration) <=
-              iMinBestLap
+            lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) ===
+            false
           ) {
             break; // Ignorer les tours "triche"
           }
-          timeInFiveMinutes += timeStringToSeconds(
-            aLaps[startIndexFiveMinutes].duration
-          );
+
+          timeInFiveMinutes += fLapTime;
           nbLapsFiveMinutes++;
           startIndexFiveMinutes++;
         }
@@ -116,9 +154,25 @@ async function main() {
           bestLapsFiveMinutes = nbLapsFiveMinutes; // Mettre à jour le nombre de tours
         }
 
-        // Pas de calcul  pour les 3 meilleurs tours si on arrive à la fin de la boucle
+        // Pas de calcul pour les 3 meilleurs tours si on arrive à la fin de la boucle
         if (aLaps[i + 1] === undefined || aLaps[i + 2] === undefined) {
           continue;
+        }
+
+        // On valide chaque tour pour les 3 meilleurs tours consécutifs
+        if (
+          lapTimeValidation(
+            averageTimeLapSession,
+            timeStringToSeconds(aLaps[i + 1].duration),
+            iMinBestLap
+          ) === false ||
+          lapTimeValidation(
+            averageTimeLapSession,
+            timeStringToSeconds(aLaps[i + 2].duration),
+            iMinBestLap
+          ) === false
+        ) {
+          continue; // Ignorer les tours "triche"
         }
 
         // Calculer le temps total pour 3 tours consécutifs
@@ -136,10 +190,15 @@ async function main() {
         }
       }
 
-      // Rechercher l'objet correspondant au pilote dans jsonDataSpeed
-      const piloteData = jsonDataSpeed[sCategory].find(
-        (data) => data.Pilote === element.chipLabel
-      );
+      // Vérification si des tours valides ont été trouvés
+      if (aLaps.length === 0) {
+        continue;
+      }
+
+      // Debug
+      // if (element.chipLabel === "David Danneaux") {
+      //   console.log("Cyril L");
+      // }
 
       // Mis à jour des données avec arrondi
       bestLap = bestLap !== null ? parseFloat(bestLap.toFixed(3)) : null;
@@ -151,6 +210,15 @@ async function main() {
         bestTimeFiveMinutes !== null
           ? parseFloat(bestTimeFiveMinutes.toFixed(3))
           : null;
+
+      if (!bestLap) {
+        continue;
+      }
+
+      // Rechercher l'objet correspondant au pilote dans jsonDataSpeed
+      const piloteData = jsonDataSpeed[sCategory].find(
+        (data) => data.Pilote === element.chipLabel
+      );
 
       // Si le pilote n'existe pas encore dans le fichier, initialisez un nouvel objet
       if (!piloteData) {
