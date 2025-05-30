@@ -129,19 +129,19 @@
     {
       "Pilote": "mrte",
       "BestLap": 17.551,
-      "Best3Lap": 53.679,
+      "Best3Lap": 53.494,
       "BestFiveMinutes": {
-        "Laps": 14,
-        "Time": 308.519
+        "Laps": 16,
+        "Time": 314.9
       }
     },
     {
       "Pilote": "dtm",
-      "BestLap": 17.736,
-      "Best3Lap": 54.191,
+      "BestLap": 17.275,
+      "Best3Lap": 52.878,
       "BestFiveMinutes": {
-        "Laps": 14,
-        "Time": 317.794
+        "Laps": 15,
+        "Time": 337.343
       }
     },
     {
@@ -394,6 +394,15 @@
       "BestFiveMinutes": {
         "Laps": 14,
         "Time": 323.468
+      }
+    },
+    {
+      "Pilote": "Antoine 4 roue motrice ",
+      "BestLap": 17.06,
+      "Best3Lap": 53.132,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 318.392
       }
     }
   ],
