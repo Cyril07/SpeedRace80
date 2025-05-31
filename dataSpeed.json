@@ -1,12 +1,43 @@
 {
+  "Info": {
+    "DateTimeLastUpdate": "2025-05-31T19:16:53.080Z",
+    "LastIdActivity": 6035384709
+  },
   "TT": [
     {
-      "Pilote": "Xb2",
-      "BestLap": 17.12,
-      "Best3Lap": 52.384,
+      "Pilote": "Pr2wd",
+      "BestLap": 21.019,
+      "Best3Lap": 66.494,
+      "BestFiveMinutes": {
+        "Laps": 13,
+        "Time": 336.135
+      }
+    },
+    {
+      "Pilote": "Antoine 4 roue motrice ",
+      "BestLap": 17.4,
+      "Best3Lap": 53.132,
       "BestFiveMinutes": {
         "Laps": 17,
-        "Time": 300.806
+        "Time": 318.392
+      }
+    },
+    {
+      "Pilote": "mrte",
+      "BestLap": 17.612,
+      "Best3Lap": 53.494,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 319.071
+      }
+    },
+    {
+      "Pilote": "dtm",
+      "BestLap": 17.275,
+      "Best3Lap": 52.878,
+      "BestFiveMinutes": {
+        "Laps": 15,
+        "Time": 337.343
       }
     },
     {
@@ -19,9 +50,18 @@
       }
     },
     {
+      "Pilote": "Xb2",
+      "BestLap": 17.12,
+      "Best3Lap": 52.384,
+      "BestFiveMinutes": {
+        "Laps": 17,
+        "Time": 300.806
+      }
+    },
+    {
       "Pilote": "PR Truck AL 😃",
-      "BestLap": 18.139,
-      "Best3Lap": 56.079,
+      "BestLap": 18.597,
+      "Best3Lap": 56.337,
       "BestFiveMinutes": {
         "Laps": 14,
         "Time": 313.519
@@ -56,8 +96,8 @@
     },
     {
       "Pilote": "L. Drouillard - 4x2-13,5",
-      "BestLap": 19.675,
-      "Best3Lap": 59.91,
+      "BestLap": 20.041,
+      "Best3Lap": 61.109,
       "BestFiveMinutes": {
         "Laps": 15,
         "Time": 321.534
@@ -65,7 +105,7 @@
     },
     {
       "Pilote": "Apex xb2",
-      "BestLap": 19.292,
+      "BestLap": 19.444,
       "Best3Lap": 59.222,
       "BestFiveMinutes": {
         "Laps": 15,
@@ -82,18 +122,9 @@
       }
     },
     {
-      "Pilote": "Antoine XB2",
-      "BestLap": 17.06,
-      "Best3Lap": 53.221,
-      "BestFiveMinutes": {
-        "Laps": 17,
-        "Time": 318.392
-      }
-    },
-    {
       "Pilote": "XB2C 24' Julien T",
-      "BestLap": 18.894,
-      "Best3Lap": 57.615,
+      "BestLap": 19.079,
+      "Best3Lap": 58.525,
       "BestFiveMinutes": {
         "Laps": 15,
         "Time": 310.94
@@ -101,8 +132,8 @@
     },
     {
       "Pilote": "Nico mugen ",
-      "BestLap": 20.889,
-      "Best3Lap": 66.868,
+      "BestLap": 21.685,
+      "Best3Lap": 70.062,
       "BestFiveMinutes": {
         "Laps": null,
         "Time": null
@@ -127,48 +158,21 @@
       }
     },
     {
-      "Pilote": "mrte",
-      "BestLap": 17.551,
-      "Best3Lap": 53.494,
-      "BestFiveMinutes": {
-        "Laps": 16,
-        "Time": 314.9
-      }
-    },
-    {
-      "Pilote": "dtm",
-      "BestLap": 17.275,
-      "Best3Lap": 52.878,
-      "BestFiveMinutes": {
-        "Laps": 15,
-        "Time": 337.343
-      }
-    },
-    {
-      "Pilote": "Y Rc4 H",
-      "BestLap": 16.648,
-      "Best3Lap": 60.401,
-      "BestFiveMinutes": {
-        "Laps": 14,
-        "Time": 312.592
-      }
-    },
-    {
       "Pilote": "B10R LL",
-      "BestLap": 17.816,
-      "Best3Lap": 54.553,
+      "BestLap": 17.912,
+      "Best3Lap": 54.597,
       "BestFiveMinutes": {
         "Laps": 13,
-        "Time": 301.994
+        "Time": 302.591
       }
     },
     {
       "Pilote": "B10TR LL",
-      "BestLap": 18.903,
+      "BestLap": 19.044,
       "Best3Lap": 58.843,
       "BestFiveMinutes": {
         "Laps": 13,
-        "Time": 304.956
+        "Time": 309.317
       }
     },
     {
@@ -182,11 +186,11 @@
     },
     {
       "Pilote": "Romain #tki4",
-      "BestLap": 20.72,
+      "BestLap": 20.935,
       "Best3Lap": 64.765,
       "BestFiveMinutes": {
         "Laps": 13,
-        "Time": 313.492
+        "Time": 323.33
       }
     },
     {
@@ -200,11 +204,11 @@
     },
     {
       "Pilote": "Saintyves Souleymane ",
-      "BestLap": 18.094,
-      "Best3Lap": 55.718,
+      "BestLap": 18.4,
+      "Best3Lap": 56.497,
       "BestFiveMinutes": {
-        "Laps": 16,
-        "Time": 309.839
+        "Laps": 14,
+        "Time": 305.308
       }
     },
     {
@@ -227,7 +231,7 @@
     },
     {
       "Pilote": "B7",
-      "BestLap": 20.742,
+      "BestLap": 20.907,
       "Best3Lap": 63.339,
       "BestFiveMinutes": {
         "Laps": 13,
@@ -236,7 +240,7 @@
     },
     {
       "Pilote": "Clément Porée",
-      "BestLap": 21.335,
+      "BestLap": 21.632,
       "Best3Lap": 65.748,
       "BestFiveMinutes": {
         "Laps": 14,
@@ -245,8 +249,8 @@
     },
     {
       "Pilote": "Fabien VINCENT 4x2",
-      "BestLap": 18.806,
-      "Best3Lap": 56.827,
+      "BestLap": 18.457,
+      "Best3Lap": 56.001,
       "BestFiveMinutes": {
         "Laps": 16,
         "Time": 312.566
@@ -254,7 +258,7 @@
     },
     {
       "Pilote": "4960589",
-      "BestLap": 20.924,
+      "BestLap": 21.091,
       "Best3Lap": null,
       "BestFiveMinutes": {
         "Laps": 14,
@@ -272,11 +276,11 @@
     },
     {
       "Pilote": "Vintage Greg",
-      "BestLap": 19.343,
+      "BestLap": 19.364,
       "Best3Lap": 58.691,
       "BestFiveMinutes": {
         "Laps": 15,
-        "Time": 305.508
+        "Time": 311.061
       }
     },
     {
@@ -335,7 +339,7 @@
     },
     {
       "Pilote": "Nico Dly",
-      "BestLap": 19.643,
+      "BestLap": 19.644,
       "Best3Lap": 59.623,
       "BestFiveMinutes": {
         "Laps": 15,
@@ -345,7 +349,7 @@
     {
       "Pilote": "Kawika TC",
       "BestLap": 19.449,
-      "Best3Lap": 60.03,
+      "Best3Lap": 60.319,
       "BestFiveMinutes": {
         "Laps": 15,
         "Time": 315.36
@@ -362,11 +366,11 @@
     },
     {
       "Pilote": "RC8B3 e",
-      "BestLap": 21.066,
+      "BestLap": 21.142,
       "Best3Lap": 65.116,
       "BestFiveMinutes": {
-        "Laps": 14,
-        "Time": 315.416
+        "Laps": 13,
+        "Time": 315.128
       }
     },
     {
@@ -392,26 +396,17 @@
       "BestLap": 19.237,
       "Best3Lap": 64.73,
       "BestFiveMinutes": {
-        "Laps": 14,
-        "Time": 323.468
-      }
-    },
-    {
-      "Pilote": "Antoine 4 roue motrice ",
-      "BestLap": 17.06,
-      "Best3Lap": 53.132,
-      "BestFiveMinutes": {
-        "Laps": 17,
-        "Time": 318.392
-      }
-    },
-    {
-      "Pilote": "Pr2wd",
-      "BestLap": 20.665,
-      "Best3Lap": 66.4,
-      "BestFiveMinutes": {
         "Laps": 13,
-        "Time": 336.135
+        "Time": 318.026
+      }
+    },
+    {
+      "Pilote": "Daviaud Axel",
+      "BestLap": 19.782,
+      "Best3Lap": 60.634,
+      "BestFiveMinutes": {
+        "Laps": 14,
+        "Time": 314.61
       }
     }
   ],
@@ -432,15 +427,6 @@
       "BestFiveMinutes": {
         "Laps": 36,
         "Time": 304.709
-      }
-    },
-    {
-      "Pilote": "Y Rc4 H",
-      "BestLap": 15.842,
-      "Best3Lap": null,
-      "BestFiveMinutes": {
-        "Laps": null,
-        "Time": null
       }
     },
     {
@@ -472,7 +458,7 @@
     },
     {
       "Pilote": "Fabien VINCENT Truck",
-      "BestLap": 8.24,
+      "BestLap": 17.317,
       "Best3Lap": null,
       "BestFiveMinutes": {
         "Laps": null,

@@ -2,8 +2,7 @@ name: Update SpeedRace80 JSON File
 
 on:
   schedule:
-    - cron: "0 22 * * *" # 00:00 heure FR (UTC+2)
-    - cron: "0 10 * * *" # 12:00 heure FR (UTC+2)
+    - cron: "0 * * * *" # toutes les heures
   workflow_dispatch: # permet de lancer manuellement
 
 jobs:

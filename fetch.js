@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 // URL de l'API pour récupérer les activités du club
 const urlRace80 =
-  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=80"; // ✅ Modifier si une autre API est utilisée
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=90"; // ✅ Modifier si une autre API est utilisée
 
 // En-têtes nécessaires pour l'appel à l'API
 const headers = {
@@ -32,7 +32,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
   const bValidTourAverage =
     averageTimeLapSession - fLapTime < 0 ||
     (averageTimeLapSession - fLapTime > 0 &&
-      averageTimeLapSession - fLapTime < 2);
+      averageTimeLapSession - fLapTime < 1.5);
 
   if (fLapTime <= iMinBestLap || !bValidTourAverage) {
     return false;
@@ -51,8 +51,13 @@ async function main() {
     averageTimeLapSession = null;
 
   // Lecture des données éxistantes
-  let jsonPath = path.join(__dirname, "dataSpeed.json");
-  let jsonDataSpeed = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  let jsonPathDataSpeed = path.join(__dirname, "dataSpeed.json");
+  let jsonDataSpeed = JSON.parse(fs.readFileSync(jsonPathDataSpeed, "utf8"));
+
+  let jsonPathIgnorePilotes = path.join(__dirname, "ignorePilotes.json");
+  let jsonIgnorePilotes = JSON.parse(
+    fs.readFileSync(jsonPathIgnorePilotes, "utf8")
+  );
 
   // Appel à l'API pour récupérer les activités
   const res = await fetch(urlRace80, {
@@ -66,9 +71,23 @@ async function main() {
 
   const oCallActivitiesRace80 = await res.json();
   const aRunsRace80 = oCallActivitiesRace80.activities;
-
+  const lastIdActivity = jsonDataSpeed["Info"].LastIdActivity;
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
+    // Eviter de reparcourir les activités déjà traitées
+    if (lastIdActivity === element.id) {
+      break;
+    }
+
+    // Rechercher si il ya des pilotes qu'on souhaite ignorer
+    const piloteData = jsonIgnorePilotes["Pilotes"].find(
+      (data) => data.Pilote === element.chipLabel
+    );
+
+    if (piloteData) {
+      continue;
+    }
+
     const urlSession = `https://practice-api.speedhive.com/api/v1/training/activities/${element.id}/sessions`;
 
     // Appel à l'API pour récupérer les sessions d'une activité
@@ -100,11 +119,6 @@ async function main() {
       }
       averageTimeLapSession = timeAverageSession / iLapAverage;
 
-      // Debug
-      // if (element.chipLabel === "Clément Porée") {
-      //   console.log("Debuggage");
-      // }
-
       // const iMinBestLap = session.medianLapDuration < 12 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
       const iMinBestLap = averageTimeLapSession < 16.5 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
       const sCategory = averageTimeLapSession < 16.5 ? "Touring" : "TT"; // Catégorie basée sur la durée médiane du tour
@@ -124,6 +138,11 @@ async function main() {
         if (bestLap === null || fLapTime < bestLap) {
           bestLap = fLapTime;
         }
+
+        // Debug
+        // if (element.chipLabel === "Antoine 4 roue motrice " && bestLap < 17.5) {
+        //   console.log("Debuggage");
+        // }
 
         // Meilleur temps / tour en 5 mins
         timeInFiveMinutes = fLapTime;
@@ -271,8 +290,18 @@ async function main() {
     }
   }
 
+  // Mis à jour de la dernière activité traitée
+  jsonDataSpeed["Info"].LastIdActivity = aRunsRace80[0].id;
+
+  // Mis à jour de la date de dernière mise à jour
+  jsonDataSpeed["Info"].DateTimeLastUpdate = new Date().toISOString();
+
   // Réécriture complète du fichier
-  fs.writeFileSync(jsonPath, JSON.stringify(jsonDataSpeed, null, 2), "utf8");
+  fs.writeFileSync(
+    jsonPathDataSpeed,
+    JSON.stringify(jsonDataSpeed, null, 2),
+    "utf8"
+  );
   console.log("Fichier mis à jour");
 }
 
