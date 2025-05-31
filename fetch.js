@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 // URL de l'API pour récupérer les activités du club
 const urlRace80 =
-  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=90"; // ✅ Modifier si une autre API est utilisée
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=120"; // ✅ Modifier si une autre API est utilisée
 
 // En-têtes nécessaires pour l'appel à l'API
 const headers = {
