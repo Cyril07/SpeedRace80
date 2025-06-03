@@ -1,7 +1,7 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-06-03T15:26:09.940Z",
-    "LastIdActivity": 6057578481
+    "DateTimeLastUpdate": "2025-06-03T16:30:06.896Z",
+    "LastIdActivity": 6057372387
   },
   "TT": [
     {
@@ -15,11 +15,11 @@
     },
     {
       "Pilote": "Antoine 4 roue motrice ",
-      "BestLap": 17.4,
-      "Best3Lap": 53.132,
+      "BestLap": 17.379,
+      "Best3Lap": 52.723,
       "BestFiveMinutes": {
         "Laps": 17,
-        "Time": 318.392
+        "Time": 314.932
       }
     },
     {
