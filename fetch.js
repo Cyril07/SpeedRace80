@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 // URL de l'API pour récupérer les activités du club
 const urlRace80 =
-  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=140"; // ✅ Modifier si une autre API est utilisée
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=160"; // ✅ Modifier si une autre API est utilisée
 
 // En-têtes nécessaires pour l'appel à l'API
 const headers = {
@@ -107,22 +107,37 @@ async function main() {
 
       // Moyenne du temps au tour sans truc bizarre
       let iLapAverage = 0,
-        timeAverageSession = 0;
+        timeAverageSession = 0,
+        iFastLap = 0,
+        iSlowLap = 0;
 
       for (const lap of aLaps) {
         const fLapTime = timeStringToSeconds(lap.duration); // Temps du tour
+
         // Vérification de la validité du tour
         if (fLapTime < 25) {
-          //fLapTime >= iMinBestLap &&
           timeAverageSession += fLapTime; // Ajouter le temps du tour à la moyenne
           iLapAverage++;
+        } else {
+          iSlowLap++;
+        }
+
+        // Compter les tours rapides
+        if (fLapTime < 16) {
+          iFastLap++;
         }
       }
+
+      if (iSlowLap > iFastLap) {
+        continue; // Si plus de tours lents que rapides, on ignore la session
+      }
+
       averageTimeLapSession = timeAverageSession / iLapAverage;
 
       // const iMinBestLap = session.medianLapDuration < 12 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
-      const iMinBestLap = averageTimeLapSession < 16.5 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
-      const sCategory = averageTimeLapSession < 16.5 ? "Touring" : "TT"; // Catégorie basée sur la durée médiane du tour
+      const iMinBestLap = averageTimeLapSession < 16.5 && iFastLap < 4 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
+      const sCategory =
+        averageTimeLapSession < 16.5 && iFastLap < 4 ? "Touring" : "TT"; // Catégorie basée sur la durée médiane du tour
 
       // Calcul du meilleur temps au tour et des meilleurs temps consécutifs
       for (let i = 0; i < aLaps.length; i++) {
@@ -141,7 +156,7 @@ async function main() {
         }
 
         // Debug
-        // if (element.chipLabel === "Antoine 4 roue motrice " && bestLap < 17.5) {
+        // if (element.chipLabel === "4533629 [0]" && bestLap < 26) {
         //   console.log("Debuggage");
         // }
 
