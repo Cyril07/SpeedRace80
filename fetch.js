@@ -32,7 +32,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
   const bValidTourAverage =
     averageTimeLapSession - fLapTime < 0 ||
     (averageTimeLapSession - fLapTime > 0 &&
-      averageTimeLapSession - fLapTime < 1.5);
+      averageTimeLapSession - fLapTime < 1.7);
 
   if (fLapTime <= iMinBestLap || !bValidTourAverage) {
     return false;
@@ -42,13 +42,18 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
 
 async function main() {
   let bestLap = null, // Meilleur temps au tour
+    bestLapDate = null, // Date du meilleur temps au tour
     bestConsecutiveLapTime = null, // Meilleur temps consécutif sur 3 tours
-    timeInFiveMinutes = 0,
+    bestConsecutiveLapsDate = null, // Date du meilleur temps consécutif sur 3 tours
+    detailsBestConsecutiveLaps = [], // Détails des 3 meilleurs tours consécutifs
+    timeInFiveMinutes = 0, // Temps total des tours dans une fenêtre de 5 minutes
     bestTimeFiveMinutes = null, // Meilleur temps sur une fenêtre de 5 minutes
-    nbLapsFiveMinutes = null,
-    bestLapsFiveMinutes = null,
-    startIndexFiveMinutes = 0,
-    averageTimeLapSession = null;
+    nbLapsFiveMinutes = null, // Nombre de tours dans la fenêtre de 5 minutes
+    bestLapsFiveMinutes = null, // Meilleur nombre de tours dans la fenêtre de 5 minutes
+    detailsBestFiveMinutes = [], // Détails des tours dans la fenêtre de 5 minutes
+    bestFiveMinutesDate = null, // Date du meilleur temps sur une fenêtre de 5 minutes
+    startIndexFiveMinutes = 0, // Index de départ pour la fenêtre de 5 minutes
+    averageTimeLapSession = null; // Moyenne du temps au tour dans la session
 
   // Lecture des données éxistantes
   let jsonPathDataSpeed = path.join(__dirname, "dataSpeed.json");
@@ -76,9 +81,9 @@ async function main() {
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
     // Eviter de reparcourir les activités déjà traitées
-    if (lastIdActivity === element.id) {
-      break;
-    }
+    // if (lastIdActivity === element.id) {
+    //   break;
+    // }
 
     // Rechercher si il ya des pilotes qu'on souhaite ignorer
     const piloteData = jsonIgnorePilotes["Pilotes"].find(
@@ -105,6 +110,11 @@ async function main() {
       // Liste des tours dans la session
       const aLaps = session.laps;
 
+      // Si moins de 5 tours, on ignore la session
+      if (aLaps.length <= 5) {
+        continue;
+      }
+
       // Moyenne du temps au tour sans truc bizarre
       let iLapAverage = 0,
         timeAverageSession = 0,
@@ -128,16 +138,21 @@ async function main() {
         }
       }
 
-      if (iSlowLap > iFastLap) {
+      if (iSlowLap >= iLapAverage) {
         continue; // Si plus de tours lents que rapides, on ignore la session
       }
 
       averageTimeLapSession = timeAverageSession / iLapAverage;
 
-      // const iMinBestLap = session.medianLapDuration < 12 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
-      const iMinBestLap = averageTimeLapSession < 16.5 && iFastLap < 4 ? 7 : 16; // Temps minimum pour ignorer les tours "triche"
+      // Temps minimum pour ignorer les tours "triche"
+      const iMinBestLap =
+        averageTimeLapSession < 16.5 && iLapAverage / 2 ? 7 : 16;
+
+      // Catégorie basée sur la durée médiane du tour
       const sCategory =
-        averageTimeLapSession < 16.5 && iFastLap < 4 ? "Touring" : "TT"; // Catégorie basée sur la durée médiane du tour
+        averageTimeLapSession < 16.5 && iFastLap > iLapAverage / 2
+          ? "Touring"
+          : "TT";
 
       // Calcul du meilleur temps au tour et des meilleurs temps consécutifs
       for (let i = 0; i < aLaps.length; i++) {
@@ -153,18 +168,15 @@ async function main() {
         // Mettre à jour le meilleur temps au tour
         if (bestLap === null || fLapTime < bestLap) {
           bestLap = fLapTime;
+          bestLapDate = aLaps[i].dateTimeStart;
         }
-
-        // Debug
-        // if (element.chipLabel === "4533629 [0]" && bestLap < 26) {
-        //   console.log("Debuggage");
-        // }
 
         // Meilleur temps / tour en 5 mins
         timeInFiveMinutes = fLapTime;
         nbLapsFiveMinutes = 1;
         startIndexFiveMinutes = i;
-
+        let aBestFiveMinutes = [{ lap: fLapTime }];
+        let dateStartBestFiveMinutes = aLaps[i].dateTimeStart;
         while (timeInFiveMinutes < 300) {
           if (aLaps[startIndexFiveMinutes] === undefined) break;
           let fLapTime = timeStringToSeconds(
@@ -176,7 +188,7 @@ async function main() {
           ) {
             break; // Ignorer les tours "triche"
           }
-
+          aBestFiveMinutes.push({ lap: fLapTime });
           timeInFiveMinutes += fLapTime;
           nbLapsFiveMinutes++;
           startIndexFiveMinutes++;
@@ -191,7 +203,9 @@ async function main() {
               timeInFiveMinutes < bestTimeFiveMinutes))
         ) {
           bestTimeFiveMinutes = timeInFiveMinutes;
-          bestLapsFiveMinutes = nbLapsFiveMinutes; // Mettre à jour le nombre de tours
+          bestLapsFiveMinutes = nbLapsFiveMinutes;
+          detailsBestFiveMinutes = aBestFiveMinutes;
+          bestFiveMinutesDate = dateStartBestFiveMinutes;
         }
 
         // Pas de calcul pour les 3 meilleurs tours si on arrive à la fin de la boucle
@@ -199,7 +213,9 @@ async function main() {
           continue;
         }
 
+        // Vérification des tours consécutifs
         // On valide chaque tour pour les 3 meilleurs tours consécutifs
+
         if (
           lapTimeValidation(
             averageTimeLapSession,
@@ -221,38 +237,45 @@ async function main() {
         const lap3 = timeStringToSeconds(aLaps[i + 2].duration);
 
         const totalLapTime = lap1 + lap2 + lap3;
+
         if (
           bestConsecutiveLapTime === null ||
           (totalLapTime < bestConsecutiveLapTime &&
             totalLapTime > iMinBestLap * 3)
         ) {
           bestConsecutiveLapTime = totalLapTime;
+          bestConsecutiveLapsDate = aLaps[i].dateTimeStart;
+          detailsBestConsecutiveLaps = [
+            { lap: lap1 },
+            { lap: lap2 },
+            { lap: lap3 },
+          ];
         }
-      }
 
-      // Vérification si des tours valides ont été trouvés
-      if (aLaps.length === 0) {
-        continue;
+        // Fin boucle
       }
 
       // Mis à jour des données avec arrondi
       bestLap = bestLap !== null ? parseFloat(bestLap.toFixed(3)) : null;
+
       bestConsecutiveLapTime =
         bestConsecutiveLapTime !== null
           ? parseFloat(bestConsecutiveLapTime.toFixed(3))
           : null;
+
       bestTimeFiveMinutes =
         bestTimeFiveMinutes !== null
           ? parseFloat(bestTimeFiveMinutes.toFixed(3))
           : null;
 
-      if (!bestLap) {
+      // Si un des meilleurs temps est null, on ignore l'activité
+      if (
+        bestLap === null &&
+        bestConsecutiveLapTime === null &&
+        bestTimeFiveMinutes === null
+      ) {
         continue;
       }
-
-      // if (bestLap < 16.2 && sCategory === "TT") {
-      //   console.log("trichhhheeee");
-      // }
 
       // Rechercher l'objet correspondant au pilote dans jsonDataSpeed
       const piloteData = jsonDataSpeed[sCategory].find(
@@ -263,24 +286,43 @@ async function main() {
       if (!piloteData) {
         jsonDataSpeed[sCategory].push({
           Pilote: element.chipLabel,
-          BestLap: bestLap,
-          Best3Lap: bestConsecutiveLapTime,
+          BestLap: {
+            Lap: bestLap,
+            Date: bestLapDate,
+          },
+          Best3Laps: {
+            Lap: bestConsecutiveLapTime,
+            DetailsLaps: detailsBestConsecutiveLaps,
+            Date: bestConsecutiveLapsDate,
+          },
           BestFiveMinutes: {
             Laps: bestLapsFiveMinutes,
             Time: bestTimeFiveMinutes,
+            DetailsLaps: detailsBestFiveMinutes,
+            Date: bestFiveMinutesDate,
           },
         });
       } else {
         // Mettre à jour les données du pilote
-        if (bestLap !== null && piloteData.BestLap > bestLap) {
-          piloteData.BestLap = bestLap;
-        }
+
         if (
-          bestConsecutiveLapTime !== null &&
-          piloteData.Best3Lap > bestConsecutiveLapTime
+          piloteData.BestLap.Lap === null ||
+          (bestLap !== null && piloteData.BestLap.Lap > bestLap)
         ) {
-          piloteData.Best3Lap = bestConsecutiveLapTime;
+          piloteData.BestLap.Lap = bestLap;
+          piloteData.BestLap.Date = bestLapDate;
         }
+
+        if (
+          piloteData.Best3Laps.Lap === null ||
+          (bestConsecutiveLapTime !== null &&
+            piloteData.Best3Laps.Lap > bestConsecutiveLapTime)
+        ) {
+          piloteData.Best3Laps.Lap = bestConsecutiveLapTime;
+          piloteData.Best3Laps.DetailsLaps = detailsBestConsecutiveLaps;
+          piloteData.Best3Laps.Date = bestConsecutiveLapsDate;
+        }
+
         if (
           (bestLapsFiveMinutes !== null &&
             bestTimeFiveMinutes !== null &&
@@ -292,17 +334,25 @@ async function main() {
         ) {
           piloteData.BestFiveMinutes.Laps = bestLapsFiveMinutes;
           piloteData.BestFiveMinutes.Time = bestTimeFiveMinutes;
+          piloteData.BestFiveMinutes.DetailsLaps = detailsBestFiveMinutes;
+          piloteData.BestFiveMinutes.Date = bestFiveMinutesDate;
         }
       }
 
       // Réinitialiser les variables pour la prochaine activité
       bestLap = null;
+      bestLapDate = null;
+
       bestConsecutiveLapTime = null;
-      timeInFiveMinutes = 0;
+      bestConsecutiveLapsDate = null;
+      detailsBestConsecutiveLaps = [];
+
       bestTimeFiveMinutes = null;
       nbLapsFiveMinutes = null;
       bestLapsFiveMinutes = null;
-      startIndexFiveMinutes = 0;
+
+      detailsBestFiveMinutes = [];
+      bestFiveMinutesDate = null;
     }
   }
 
