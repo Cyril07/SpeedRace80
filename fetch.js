@@ -81,9 +81,9 @@ async function main() {
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
     // Eviter de reparcourir les activités déjà traitées
-    // if (lastIdActivity === element.id) {
-    //   break;
-    // }
+    if (lastIdActivity === element.id) {
+      break;
+    }
 
     // Rechercher si il ya des pilotes qu'on souhaite ignorer
     const piloteData = jsonIgnorePilotes["Pilotes"].find(
@@ -146,11 +146,11 @@ async function main() {
 
       // Temps minimum pour ignorer les tours "triche"
       const iMinBestLap =
-        averageTimeLapSession < 16.5 && iLapAverage / 2 ? 7 : 16;
+        averageTimeLapSession < 16.5 && iFastLap > iLapAverage / 4 ? 7 : 16;
 
       // Catégorie basée sur la durée médiane du tour
       const sCategory =
-        averageTimeLapSession < 16.5 && iFastLap > iLapAverage / 2
+        averageTimeLapSession < 16.5 && iFastLap > iLapAverage / 4
           ? "Touring"
           : "TT";
 
@@ -171,17 +171,23 @@ async function main() {
           bestLapDate = aLaps[i].dateTimeStart;
         }
 
+        // if (bestLap < 16 && element.chipLabel === "Saintyves Souleymane ") {
+        //   console.log("toto");
+        // }
+
         // Meilleur temps / tour en 5 mins
         timeInFiveMinutes = fLapTime;
-        nbLapsFiveMinutes = 1;
+        nbLapsFiveMinutes = 0;
         startIndexFiveMinutes = i;
-        let aBestFiveMinutes = [{ lap: fLapTime }];
+        let aBestFiveMinutes = [];
         let dateStartBestFiveMinutes = aLaps[i].dateTimeStart;
         while (timeInFiveMinutes < 300) {
           if (aLaps[startIndexFiveMinutes] === undefined) break;
+
           let fLapTime = timeStringToSeconds(
             aLaps[startIndexFiveMinutes].duration
           );
+
           if (
             lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) ===
             false
