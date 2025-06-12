@@ -176,7 +176,7 @@ async function main() {
         // }
 
         // Meilleur temps / tour en 5 mins
-        timeInFiveMinutes = fLapTime;
+        timeInFiveMinutes = 0;
         nbLapsFiveMinutes = 0;
         startIndexFiveMinutes = i;
         let aBestFiveMinutes = [];
