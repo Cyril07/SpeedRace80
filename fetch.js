@@ -32,7 +32,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
   const bValidTourAverage =
     averageTimeLapSession - fLapTime < 0 ||
     (averageTimeLapSession - fLapTime > 0 &&
-      averageTimeLapSession - fLapTime < 1.7);
+      averageTimeLapSession - fLapTime < 2.5);
 
   if (fLapTime <= iMinBestLap || !bValidTourAverage) {
     return false;
@@ -125,7 +125,7 @@ async function main() {
         const fLapTime = timeStringToSeconds(lap.duration); // Temps du tour
 
         // Vérification de la validité du tour
-        if (fLapTime < 25) {
+        if (fLapTime < 30) {
           timeAverageSession += fLapTime; // Ajouter le temps du tour à la moyenne
           iLapAverage++;
         } else {
