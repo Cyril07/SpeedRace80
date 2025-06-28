@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 // URL de l'API pour récupérer les activités du club
 const urlRace80 =
-  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=160"; // ✅ Modifier si une autre API est utilisée
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=150"; // ✅ Modifier si une autre API est utilisée
 
 // En-têtes nécessaires pour l'appel à l'API
 const headers = {
@@ -32,7 +32,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
   const bValidTourAverage =
     averageTimeLapSession - fLapTime < 0 ||
     (averageTimeLapSession - fLapTime > 0 &&
-      averageTimeLapSession - fLapTime < 2.5);
+      averageTimeLapSession - fLapTime < 3);
 
   if (fLapTime <= iMinBestLap || !bValidTourAverage) {
     return false;
@@ -41,6 +41,11 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
 }
 
 async function main() {
+  const settingsTrack = {
+    minBestLapTT: 19, // Temps minimum pour un meilleur tour
+    minBestLapTouring: 7, // Temps minimum pour un meilleur tour en mode Touring
+  };
+
   let bestLap = null, // Meilleur temps au tour
     bestLapDate = null, // Date du meilleur temps au tour
     bestConsecutiveLapTime = null, // Meilleur temps consécutif sur 3 tours
@@ -81,6 +86,7 @@ async function main() {
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
     // Eviter de reparcourir les activités déjà traitées
+    // 6081951015 - New track
     if (lastIdActivity === element.id) {
       break;
     }
@@ -125,7 +131,7 @@ async function main() {
         const fLapTime = timeStringToSeconds(lap.duration); // Temps du tour
 
         // Vérification de la validité du tour
-        if (fLapTime < 30) {
+        if (fLapTime < timeStringToSeconds(session.medianLapDuration) + 2) {
           timeAverageSession += fLapTime; // Ajouter le temps du tour à la moyenne
           iLapAverage++;
         } else {
@@ -133,7 +139,7 @@ async function main() {
         }
 
         // Compter les tours rapides
-        if (fLapTime < 16) {
+        if (fLapTime < settingsTrack.minBestLapTT) {
           iFastLap++;
         }
       }
@@ -146,11 +152,15 @@ async function main() {
 
       // Temps minimum pour ignorer les tours "triche"
       const iMinBestLap =
-        averageTimeLapSession < 16.5 && iFastLap > iLapAverage / 4 ? 7 : 16;
+        averageTimeLapSession < settingsTrack.minBestLapTT &&
+        iFastLap > iLapAverage / 4
+          ? settingsTrack.minBestLapTouring
+          : settingsTrack.minBestLapTT;
 
       // Catégorie basée sur la durée médiane du tour
       const sCategory =
-        averageTimeLapSession < 16.5 && iFastLap > iLapAverage / 4
+        averageTimeLapSession < settingsTrack.minBestLapTT &&
+        iFastLap > iLapAverage / 4
           ? "Touring"
           : "TT";
 
