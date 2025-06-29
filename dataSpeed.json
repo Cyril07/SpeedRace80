@@ -1,7 +1,7 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-06-29T08:27:46.429Z",
-    "LastIdActivity": 6186294327
+    "DateTimeLastUpdate": "2025-06-29T09:21:58.431Z",
+    "LastIdActivity": 6186649668
   },
   "TT": [
     {
@@ -463,6 +463,34 @@
           }
         ],
         "Date": "2025-06-29T09:55:07.634+02:00"
+      }
+    },
+    {
+      "Pilote": "B10TR LL",
+      "BestLap": {
+        "Lap": 27.683,
+        "Date": "2025-06-29T11:17:12.651+02:00"
+      },
+      "Best3Laps": {
+        "Lap": 116.883,
+        "DetailsLaps": [
+          {
+            "lap": 36.662
+          },
+          {
+            "lap": 52.538
+          },
+          {
+            "lap": 27.683
+          }
+        ],
+        "Date": "2025-06-29T11:15:43.451+02:00"
+      },
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null,
+        "DetailsLaps": [],
+        "Date": null
       }
     }
   ],
