@@ -32,7 +32,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
   const bValidTourAverage =
     averageTimeLapSession - fLapTime < 0 ||
     (averageTimeLapSession - fLapTime > 0 &&
-      averageTimeLapSession - fLapTime < 3);
+      averageTimeLapSession - fLapTime < 2);
 
   if (fLapTime <= iMinBestLap || !bValidTourAverage) {
     return false;
@@ -185,9 +185,9 @@ async function main() {
           bestLapDate = aLaps[i].dateTimeStart;
         }
 
-        // if (bestLap < 16 && element.chipLabel === "Saintyves Souleymane ") {
-        //   console.log("toto");
-        // }
+        if (bestLap < 19.4 && element.chipLabel === "🥝 Cyril - TLR 22-X") {
+          console.log("toto");
+        }
 
         // Meilleur temps / tour en 5 mins
         timeInFiveMinutes = 0;
