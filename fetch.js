@@ -82,12 +82,16 @@ async function main() {
   const oCallActivitiesRace80 = await res.json();
   const aRunsRace80 = oCallActivitiesRace80.activities;
   const lastIdActivity = jsonDataSpeed["Info"].LastIdActivity;
+  const lastDateTimeActivity = jsonDataSpeed["Info"].EndDateTimeActivity;
 
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
     // Eviter de reparcourir les activités déjà traitées
     // 6081951015 - New track
-    if (lastIdActivity === element.id) {
+    if (
+      lastIdActivity === element.id &&
+      lastDateTimeActivity === element.endTime
+    ) {
       break;
     }
 
@@ -370,6 +374,11 @@ async function main() {
       detailsBestFiveMinutes = [];
       bestFiveMinutesDate = null;
     }
+
+    if (lastIdActivity === element.id) {
+      // Si on a atteint l'activité déjà traitée, on sort de la boucle
+      break;
+    }
   }
 
   // Mis à jour de la dernière activité traitée
@@ -377,6 +386,9 @@ async function main() {
 
   // Mis à jour de la date de dernière mise à jour
   jsonDataSpeed["Info"].DateTimeLastUpdate = new Date().toISOString();
+
+  // Mise à jour de la date time de fin de l'activité
+  jsonDataSpeed["Info"].EndDateTimeActivity = aRunsRace80[0].endTime;
 
   // Réécriture complète du fichier
   fs.writeFileSync(
