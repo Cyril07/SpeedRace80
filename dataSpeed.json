@@ -1,8 +1,8 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-07-11T21:21:46.062Z",
-    "LastIdActivity": 6245274285,
-    "EndDateTimeActivity": "2025-07-11T22:59:37+02:00"
+    "DateTimeLastUpdate": "2025-07-11T22:22:45.936Z",
+    "LastIdActivity": 6245586405,
+    "EndDateTimeActivity": "2025-07-12T00:22:41+02:00"
   },
   "TT": [
     {
@@ -966,23 +966,23 @@
     {
       "Pilote": "dtm",
       "BestLap": {
-        "Lap": 20.522,
-        "Date": "2025-07-11T22:57:55.009+02:00"
+        "Lap": 20.18,
+        "Date": "2025-07-11T23:49:41.882+02:00"
       },
       "Best3Laps": {
-        "Lap": 62.591,
+        "Lap": 61.507,
         "DetailsLaps": [
           {
-            "lap": 20.522
+            "lap": 20.689
           },
           {
-            "lap": 20.798
+            "lap": 20.18
           },
           {
-            "lap": 21.271
+            "lap": 20.638
           }
         ],
-        "Date": "2025-07-11T22:57:55.009+02:00"
+        "Date": "2025-07-11T23:49:21.193+02:00"
       },
       "BestFiveMinutes": {
         "Laps": 14,
