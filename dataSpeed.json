@@ -1,8 +1,8 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-07-12T11:19:01.140Z",
-    "LastIdActivity": 6245586354,
-    "EndDateTimeActivity": "2025-07-12T00:30:51+02:00"
+    "DateTimeLastUpdate": "2025-07-12T12:42:58.157Z",
+    "LastIdActivity": 6252365754,
+    "EndDateTimeActivity": "2025-07-12T14:23:04+02:00"
   },
   "TT": [
     {
@@ -1661,6 +1661,34 @@
           }
         ],
         "Date": "2025-07-11T20:08:23.474+02:00"
+      }
+    },
+    {
+      "Pilote": "capron sebastien ",
+      "BestLap": {
+        "Lap": 33.343,
+        "Date": "2025-07-12T14:15:00.441+02:00"
+      },
+      "Best3Laps": {
+        "Lap": 205.507,
+        "DetailsLaps": [
+          {
+            "lap": 67.418
+          },
+          {
+            "lap": 100.726
+          },
+          {
+            "lap": 37.363
+          }
+        ],
+        "Date": "2025-07-12T14:09:29.581+02:00"
+      },
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null,
+        "DetailsLaps": [],
+        "Date": null
       }
     }
   ],
