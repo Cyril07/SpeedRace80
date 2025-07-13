@@ -1,8 +1,8 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-07-13T12:43:42.005Z",
-    "LastIdActivity": 6262633695,
-    "EndDateTimeActivity": "2025-07-13T14:43:39+02:00"
+    "DateTimeLastUpdate": "2025-07-13T13:31:23.472Z",
+    "LastIdActivity": 6262645848,
+    "EndDateTimeActivity": "2025-07-13T15:31:10+02:00"
   },
   "TT": [
     {
@@ -419,8 +419,8 @@
     {
       "Pilote": "Mugen AL 😃",
       "BestLap": {
-        "Lap": 20.321,
-        "Date": "2025-07-09T17:46:32.89+02:00"
+        "Lap": 20.308,
+        "Date": "2025-07-13T15:28:38.591+02:00"
       },
       "Best3Laps": {
         "Lap": 61.476,
@@ -1155,23 +1155,23 @@
     {
       "Pilote": "B10R LL",
       "BestLap": {
-        "Lap": 20.906,
-        "Date": "2025-06-29T18:19:11.324+02:00"
+        "Lap": 20.524,
+        "Date": "2025-07-13T15:28:33.921+02:00"
       },
       "Best3Laps": {
-        "Lap": 65.149,
+        "Lap": 64.761,
         "DetailsLaps": [
           {
-            "lap": 21.461
+            "lap": 21.661
           },
           {
-            "lap": 21.721
+            "lap": 20.524
           },
           {
-            "lap": 21.967
+            "lap": 22.576
           }
         ],
-        "Date": "2025-06-29T14:58:13.408+02:00"
+        "Date": "2025-07-13T15:28:12.26+02:00"
       },
       "BestFiveMinutes": {
         "Laps": 13,
