@@ -115,20 +115,8 @@ async function main() {
       (data) => data.NumeroPuce === element.chipCode
     );
 
-    if (lastActivityPiloteData) {
-      // Mettre à jour la date de dernière activité
-      lastActivityPiloteData.LastDateTimeActivity = element.endTime;
-      lastActivityPiloteData.Pilote = element.chipLabel;
-
-      if (lastActivityPiloteData.LastDateTimeActivity === element.endTime)
-        continue;
-    } else {
-      // Ajouter un nouvel objet pour le pilote
-      jsonDataLastActivityPilotes.Pilotes.push({
-        NumeroPuce: element.chipCode,
-        Pilote: element.chipLabel,
-        LastDateTimeActivity: element.endTime,
-      });
+    if (lastActivityPiloteData?.LastDateTimeActivity === element.endTime) {
+      continue;
     }
 
     // En cas de remis à jour depuis la nouvelle piste
@@ -201,7 +189,7 @@ async function main() {
           ? "Touring"
           : "TT";
 
-      // if (element.chipLabel === "xray xb2 2025 kossovar") {
+      // if (element.chipLabel === "🥝 Cyril - TLR 22-X") {
       //   console.log("toto");
       // }
 
@@ -407,6 +395,19 @@ async function main() {
 
       detailsBestFiveMinutes = [];
       bestFiveMinutesDate = null;
+    }
+
+    // Mettre à jour la date de dernière activité
+    if (lastActivityPiloteData) {
+      lastActivityPiloteData.LastDateTimeActivity = element.endTime;
+      lastActivityPiloteData.Pilote = element.chipLabel;
+    } else {
+      // Ajouter un nouvel objet pour le pilote
+      jsonDataLastActivityPilotes.Pilotes.push({
+        NumeroPuce: element.chipCode,
+        Pilote: element.chipLabel,
+        LastDateTimeActivity: element.endTime,
+      });
     }
   }
 
