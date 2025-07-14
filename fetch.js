@@ -69,6 +69,14 @@ async function main() {
     fs.readFileSync(jsonPathIgnorePilotes, "utf8")
   );
 
+  let jsonLastActivityPilotes = path.join(
+    __dirname,
+    "lastActivityPilotes.json"
+  );
+  let jsonDataLastActivityPilotes = JSON.parse(
+    fs.readFileSync(jsonLastActivityPilotes, "utf8")
+  );
+
   // Appel à l'API pour récupérer les activités
   const res = await fetch(urlRace80, {
     method: "GET",
@@ -84,23 +92,47 @@ async function main() {
 
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
+    // Rechercher si il ya des pilotes qu'on souhaite ignorer
+    const ignorePiloteData = jsonIgnorePilotes["Pilotes"].find(
+      (data) => data.Pilote === element.chipLabel
+    );
+
+    if (ignorePiloteData) {
+      continue;
+    }
+
+    if (
+      !(
+        new Date(element.endTime) >=
+        new Date().setDate(new Date().getDate() - 1)
+      )
+    ) {
+      break;
+    }
+
+    // Vérification de la date de l'activité pour mettre à jour les données
+    const lastActivityPiloteData = jsonDataLastActivityPilotes["Pilotes"].find(
+      (data) => data.Pilote === element.chipLabel
+    );
+
+    if (
+      lastActivityPiloteData &&
+      lastActivityPiloteData.LastDateTimeActivity === element.endTime
+    ) {
+      continue;
+    } else {
+      jsonDataLastActivityPilotes.Pilotes.push({
+        Pilote: element.chipLabel,
+        LastDateTimeActivity: element.endTime,
+      });
+    }
+
+    // // En cas de remis à jour depuis la nouvelle piste
     // if (new Date(element.endTime) <= new Date(2025, 5, 27, 0, 0, 0)) {
     //   break;
     // }
 
-    if (new Date(element.endTime).getDate() !== new Date().getDate()) {
-      break;
-    }
-
-    // Rechercher si il ya des pilotes qu'on souhaite ignorer
-    const piloteData = jsonIgnorePilotes["Pilotes"].find(
-      (data) => data.Pilote === element.chipLabel
-    );
-
-    if (piloteData) {
-      continue;
-    }
-
+    // On lance l'appel pour récupérer les sessions de l'activité
     const urlSession = `https://practice-api.speedhive.com/api/v1/training/activities/${element.id}/sessions`;
 
     // Appel à l'API pour récupérer les sessions d'une activité
@@ -382,7 +414,14 @@ async function main() {
     JSON.stringify(jsonDataSpeed, null, 2),
     "utf8"
   );
-  console.log("Fichier mis à jour");
+
+  fs.writeFileSync(
+    jsonLastActivityPilotes,
+    JSON.stringify(jsonDataLastActivityPilotes, null, 2),
+    "utf8"
+  );
+
+  console.log("Fichiers mis à jour");
 }
 
 // Gestion des erreurs
