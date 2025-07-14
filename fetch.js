@@ -112,18 +112,20 @@ async function main() {
 
     // Vérification de la date de l'activité pour mettre à jour les données
     const lastActivityPiloteData = jsonDataLastActivityPilotes["Pilotes"].find(
-      (data) => data.Pilote === element.chipLabel
+      (data) => data.NumeroPuce === element.id
     );
 
     if (lastActivityPiloteData) {
       // Mettre à jour la date de dernière activité
       lastActivityPiloteData.LastDateTimeActivity = element.endTime;
+      lastActivityPiloteData.Pilote = element.chipLabel;
 
       if (lastActivityPiloteData.LastDateTimeActivity === element.endTime)
         continue;
     } else {
       // Ajouter un nouvel objet pour le pilote
       jsonDataLastActivityPilotes.Pilotes.push({
+        NumeroPuce: element.id,
         Pilote: element.chipLabel,
         LastDateTimeActivity: element.endTime,
       });
@@ -330,13 +332,14 @@ async function main() {
 
       // Rechercher l'objet correspondant au pilote dans jsonDataSpeed
       const piloteData = jsonDataSpeed[sCategory].find(
-        (data) => data.Pilote === element.chipLabel
+        (data) => data.NumeroPuce === element.id
       );
 
       // Si le pilote n'existe pas encore dans le fichier, initialisez un nouvel objet
       if (!piloteData) {
         jsonDataSpeed[sCategory].push({
           Pilote: element.chipLabel,
+          NumeroPuce: element.id,
           BestLap: {
             Lap: bestLap,
             Date: bestLapDate,
@@ -355,7 +358,7 @@ async function main() {
         });
       } else {
         // Mettre à jour les données du pilote
-
+        piloteData.Pilote = element.chipLabel;
         if (
           piloteData.BestLap.Lap === null ||
           (bestLap !== null && piloteData.BestLap.Lap > bestLap)
