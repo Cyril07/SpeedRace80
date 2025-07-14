@@ -115,19 +115,21 @@ async function main() {
       (data) => data.Pilote === element.chipLabel
     );
 
-    if (
-      lastActivityPiloteData &&
-      lastActivityPiloteData.LastDateTimeActivity === element.endTime
-    ) {
-      continue;
+    if (lastActivityPiloteData) {
+      // Mettre à jour la date de dernière activité
+      lastActivityPiloteData.LastDateTimeActivity = element.endTime;
+
+      if (lastActivityPiloteData.LastDateTimeActivity === element.endTime)
+        continue;
     } else {
+      // Ajouter un nouvel objet pour le pilote
       jsonDataLastActivityPilotes.Pilotes.push({
         Pilote: element.chipLabel,
         LastDateTimeActivity: element.endTime,
       });
     }
 
-    // // En cas de remis à jour depuis la nouvelle piste
+    // En cas de remis à jour depuis la nouvelle piste
     // if (new Date(element.endTime) <= new Date(2025, 5, 27, 0, 0, 0)) {
     //   break;
     // }
