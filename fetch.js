@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 // URL de l'API pour récupérer les activités du club
 const urlRace80 =
-  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=150"; // ✅ Modifier si une autre API est utilisée
+  "https://practice-api.speedhive.com/api/v1/locations/5204928/activities?count=120"; // ✅ Modifier si une autre API est utilisée
 
 // En-têtes nécessaires pour l'appel à l'API
 const headers = {
@@ -42,7 +42,7 @@ function lapTimeValidation(averageTimeLapSession, fLapTime, iMinBestLap) {
 
 async function main() {
   const settingsTrack = {
-    minBestLapTT: 19, // Temps minimum pour un meilleur tour
+    minBestLapTT: 18.8, // Temps minimum pour un meilleur tour
     minBestLapTouring: 7, // Temps minimum pour un meilleur tour en mode Touring
   };
 
@@ -81,17 +81,14 @@ async function main() {
 
   const oCallActivitiesRace80 = await res.json();
   const aRunsRace80 = oCallActivitiesRace80.activities;
-  const lastIdActivity = jsonDataSpeed["Info"].LastIdActivity;
-  const lastDateTimeActivity = jsonDataSpeed["Info"].EndDateTimeActivity;
 
   // Parcourir chaque activité
   for (const element of aRunsRace80) {
-    // Eviter de reparcourir les activités déjà traitées
-    // 6171280791 - New track
-    if (
-      lastIdActivity === element.id &&
-      lastDateTimeActivity === element.endTime
-    ) {
+    // if (new Date(element.endTime) <= new Date(2025, 5, 27, 0, 0, 0)) {
+    //   break;
+    // }
+
+    if (new Date(element.endTime).getDate() !== new Date().getDate()) {
       break;
     }
 
@@ -168,6 +165,10 @@ async function main() {
           ? "Touring"
           : "TT";
 
+      // if (element.chipLabel === "xray xb2 2025 kossovar") {
+      //   console.log("toto");
+      // }
+
       // Calcul du meilleur temps au tour et des meilleurs temps consécutifs
       for (let i = 0; i < aLaps.length; i++) {
         const fLapTime = timeStringToSeconds(aLaps[i].duration); // Temps du tour
@@ -183,10 +184,6 @@ async function main() {
         if (bestLap === null || fLapTime < bestLap) {
           bestLap = fLapTime;
           bestLapDate = aLaps[i].dateTimeStart;
-        }
-
-        if (bestLap < 19.4 && element.chipLabel === "🥝 Cyril - TLR 22-X") {
-          console.log("toto");
         }
 
         // Meilleur temps / tour en 5 mins
@@ -374,21 +371,10 @@ async function main() {
       detailsBestFiveMinutes = [];
       bestFiveMinutesDate = null;
     }
-
-    if (lastIdActivity === element.id) {
-      // Si on a atteint l'activité déjà traitée, on sort de la boucle
-      break;
-    }
   }
-
-  // Mis à jour de la dernière activité traitée
-  jsonDataSpeed["Info"].LastIdActivity = aRunsRace80[0].id;
 
   // Mis à jour de la date de dernière mise à jour
   jsonDataSpeed["Info"].DateTimeLastUpdate = new Date().toISOString();
-
-  // Mise à jour de la date time de fin de l'activité
-  jsonDataSpeed["Info"].EndDateTimeActivity = aRunsRace80[0].endTime;
 
   // Réécriture complète du fichier
   fs.writeFileSync(
