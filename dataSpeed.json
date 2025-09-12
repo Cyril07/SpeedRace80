@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-09-12T21:17:37.669Z"
+    "DateTimeLastUpdate": "2025-09-12T22:18:14.730Z"
   },
   "TT": [
     {
@@ -3642,8 +3642,8 @@
       "Pilote": "mrte",
       "NumeroPuce": "3204593",
       "BestLap": {
-        "Lap": 8.389,
-        "Date": "2025-09-12T23:10:38.811+02:00"
+        "Lap": 8.248,
+        "Date": "2025-09-12T23:49:14.705+02:00"
       },
       "Best3Laps": {
         "Lap": 25.253,
