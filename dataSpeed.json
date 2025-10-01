@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-10-01T15:21:26.479Z"
+    "DateTimeLastUpdate": "2025-10-01T16:27:23.663Z"
   },
   "TT": [
     {
@@ -4071,6 +4071,35 @@
           }
         ],
         "Date": "2025-09-19T23:30:58.082+02:00"
+      }
+    },
+    {
+      "Pilote": "🥝 Cyril - TLR 22-X",
+      "NumeroPuce": "2851984",
+      "BestLap": {
+        "Lap": 9.929,
+        "Date": "2025-10-01T18:10:41.342+02:00"
+      },
+      "Best3Laps": {
+        "Lap": 30.353,
+        "DetailsLaps": [
+          {
+            "lap": 10.109
+          },
+          {
+            "lap": 10.315
+          },
+          {
+            "lap": 9.929
+          }
+        ],
+        "Date": "2025-10-01T18:10:20.918+02:00"
+      },
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null,
+        "DetailsLaps": [],
+        "Date": null
       }
     }
   ]
