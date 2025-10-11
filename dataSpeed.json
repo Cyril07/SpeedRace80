@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-10-11T10:19:49.812Z"
+    "DateTimeLastUpdate": "2025-10-11T11:15:25.168Z"
   },
   "TT": [
     {
@@ -4097,6 +4097,35 @@
           }
         ],
         "Date": "2025-10-01T18:10:20.918+02:00"
+      },
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null,
+        "DetailsLaps": [],
+        "Date": null
+      }
+    },
+    {
+      "Pilote": "8313010 [0]",
+      "NumeroPuce": "8313010",
+      "BestLap": {
+        "Lap": 7.438,
+        "Date": "2025-10-11T12:54:55.194+02:00"
+      },
+      "Best3Laps": {
+        "Lap": 22.846,
+        "DetailsLaps": [
+          {
+            "lap": 7.438
+          },
+          {
+            "lap": 7.796
+          },
+          {
+            "lap": 7.612
+          }
+        ],
+        "Date": "2025-10-11T12:54:55.194+02:00"
       },
       "BestFiveMinutes": {
         "Laps": null,
