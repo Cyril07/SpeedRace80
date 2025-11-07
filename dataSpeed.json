@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-11-07T20:22:30.339Z"
+    "DateTimeLastUpdate": "2025-11-07T21:16:33.009Z"
   },
   "TT": [
     {
@@ -3525,8 +3525,8 @@
       "Pilote": "X4 22' Julien T",
       "NumeroPuce": "5601379",
       "BestLap": {
-        "Lap": 8.238,
-        "Date": "2025-10-30T18:57:05.246+01:00"
+        "Lap": 8.145,
+        "Date": "2025-11-07T21:42:46.992+01:00"
       },
       "Best3Laps": {
         "Lap": 25.12,
