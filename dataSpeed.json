@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2025-11-29T14:20:04.815Z"
+    "DateTimeLastUpdate": "2025-11-29T15:21:23.518Z"
   },
   "TT": [
     {
@@ -5099,23 +5099,23 @@
       "Pilote": " Sfo GT Stock",
       "NumeroPuce": "2864353",
       "BestLap": {
-        "Lap": 8.391,
-        "Date": "2025-11-26T18:09:26.276+01:00"
+        "Lap": 8.134,
+        "Date": "2025-11-29T16:12:43.889+01:00"
       },
       "Best3Laps": {
-        "Lap": 25.997,
+        "Lap": 24.64,
         "DetailsLaps": [
           {
-            "lap": 8.439
+            "lap": 8.249
           },
           {
-            "lap": 9.167
+            "lap": 8.257
           },
           {
-            "lap": 8.391
+            "lap": 8.134
           }
         ],
-        "Date": "2025-11-26T18:09:08.67+01:00"
+        "Date": "2025-11-29T16:12:27.383+01:00"
       },
       "BestFiveMinutes": {
         "Laps": 33,
