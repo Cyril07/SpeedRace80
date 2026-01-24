@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-01-24T14:23:13.368Z"
+    "DateTimeLastUpdate": "2026-01-24T15:24:07.329Z"
   },
   "TT": [
     {
@@ -6791,6 +6791,35 @@
           }
         ],
         "Date": "2026-01-24T14:27:37.304+01:00"
+      }
+    },
+    {
+      "Pilote": "Tekno 10 Jules",
+      "NumeroPuce": "8354363",
+      "BestLap": {
+        "Lap": 10.095,
+        "Date": "2026-01-24T15:48:47.27+01:00"
+      },
+      "Best3Laps": {
+        "Lap": 30.965,
+        "DetailsLaps": [
+          {
+            "lap": 10.478
+          },
+          {
+            "lap": 10.392
+          },
+          {
+            "lap": 10.095
+          }
+        ],
+        "Date": "2026-01-24T15:48:26.4+01:00"
+      },
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null,
+        "DetailsLaps": [],
+        "Date": null
       }
     }
   ]
