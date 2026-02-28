@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-02-28T22:26:52.388Z"
+    "DateTimeLastUpdate": "2026-02-28T23:25:44.062Z"
   },
   "TT": [
     {
@@ -6043,8 +6043,8 @@
       "Pilote": "CHAN Alex M-07",
       "NumeroPuce": "4394350",
       "BestLap": {
-        "Lap": 8.958,
-        "Date": "2026-02-28T20:16:46.736+01:00"
+        "Lap": 8.956,
+        "Date": "2026-02-28T23:41:57.896+01:00"
       },
       "Best3Laps": {
         "Lap": 27.238,
