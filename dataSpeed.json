@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-04-04T19:34:02.407Z"
+    "DateTimeLastUpdate": "2026-04-04T20:36:29.718Z"
   },
   "TT": [
     {
@@ -3347,8 +3347,8 @@
       "Pilote": "WGT-R",
       "NumeroPuce": "9001427",
       "BestLap": {
-        "Lap": 8.396,
-        "Date": "2026-04-04T19:58:05.607+02:00"
+        "Lap": 8.342,
+        "Date": "2026-04-04T21:57:06.575+02:00"
       },
       "Best3Laps": {
         "Lap": 25.508,
