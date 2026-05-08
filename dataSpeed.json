@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-05-08T13:57:52.753Z"
+    "DateTimeLastUpdate": "2026-05-08T15:43:36.563Z"
   },
   "TT": [
     {
@@ -8344,6 +8344,35 @@
           }
         ],
         "Date": "2026-04-26T14:29:02.82+02:00"
+      }
+    },
+    {
+      "Pilote": "X8 26’ Julien T",
+      "NumeroPuce": "7366970",
+      "BestLap": {
+        "Lap": 8.757,
+        "Date": "2026-05-08T17:43:13.062+02:00"
+      },
+      "Best3Laps": {
+        "Lap": 26.711,
+        "DetailsLaps": [
+          {
+            "lap": 9.117
+          },
+          {
+            "lap": 8.757
+          },
+          {
+            "lap": 8.837
+          }
+        ],
+        "Date": "2026-05-08T17:43:03.945+02:00"
+      },
+      "BestFiveMinutes": {
+        "Laps": null,
+        "Time": null,
+        "DetailsLaps": [],
+        "Date": null
       }
     }
   ]
