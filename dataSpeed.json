@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-06-21T06:05:21.813Z"
+    "DateTimeLastUpdate": "2026-06-21T10:31:58.932Z"
   },
   "TT": [
     {
@@ -8398,8 +8398,8 @@
       "Pilote": "X12 26’ Julien T",
       "NumeroPuce": "7366970",
       "BestLap": {
-        "Lap": 7.755,
-        "Date": "2026-06-06T14:25:10.235+02:00"
+        "Lap": 7.735,
+        "Date": "2026-06-21T12:12:32.848+02:00"
       },
       "Best3Laps": {
         "Lap": 23.687,
