@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-08-08T17:33:04.346Z"
+    "DateTimeLastUpdate": "2026-08-08T18:41:04.440Z"
   },
   "TT": [
     {
@@ -1108,7 +1108,7 @@
       }
     },
     {
-      "Pilote": "Kawika TT",
+      "Pilote": "Kawika TT1",
       "NumeroPuce": "8011755",
       "BestLap": {
         "Lap": 20.012,
@@ -6488,19 +6488,19 @@
         "Date": "2026-08-08T12:36:45.607+02:00"
       },
       "Best3Laps": {
-        "Lap": 22.026,
+        "Lap": 21.941,
         "DetailsLaps": [
           {
-            "lap": 7.13
+            "lap": 7.269
           },
           {
-            "lap": 7.617
+            "lap": 7.329
           },
           {
-            "lap": 7.279
+            "lap": 7.343
           }
         ],
-        "Date": "2026-08-08T12:36:45.607+02:00"
+        "Date": "2026-08-08T19:50:45.616+02:00"
       },
       "BestFiveMinutes": {
         "Laps": 40,
