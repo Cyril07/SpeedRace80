@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-09-07T17:41:45.959Z"
+    "DateTimeLastUpdate": "2026-09-07T21:18:10.278Z"
   },
   "TT": [
     {
@@ -5326,7 +5326,7 @@
       }
     },
     {
-      "Pilote": "X10 22' Julien T",
+      "Pilote": "Julien T",
       "NumeroPuce": "7418413",
       "BestLap": {
         "Lap": 7.434,
