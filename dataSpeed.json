@@ -1,6 +1,6 @@
 {
   "Info": {
-    "DateTimeLastUpdate": "2026-09-12T16:50:08.809Z"
+    "DateTimeLastUpdate": "2026-09-12T19:01:54.500Z"
   },
   "TT": [
     {
@@ -4897,8 +4897,8 @@
       "Pilote": "Gilles",
       "NumeroPuce": "7629015",
       "BestLap": {
-        "Lap": 7.631,
-        "Date": "2026-09-12T16:17:28.223+02:00"
+        "Lap": 7.576,
+        "Date": "2026-09-12T19:01:02.01+02:00"
       },
       "Best3Laps": {
         "Lap": 23.2,
